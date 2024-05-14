@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,53,53,1) 100%);
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+#game {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,255,0,0.5);
+}
+input[type="number"] {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ff00;
+    width: 50px;
+    text-align: center;
+    transition: all 0.5s ease;
+    -webkit-appearance: textfield; /* Esto elimina las flechas por defecto en Chrome y Safari */
+}
+Z
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none; /* Esto elimina las flechas por defecto en Chrome y Safari */
+margin: 0; /* Esto elimina las flechas por defecto en Chrome y Safari */
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+background: url('up-arrow.png') no-repeat;
+background-size: 9px;
+opacity: 0.3;
+}
+
+input[type="number"]::-webkit-outer-spin-button {
+background: url('down-arrow.png') no-repeat;
+background-size: 9px;
+opacity: 0.3;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0,255,0,0.5);
+}
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ff00;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+button:hover {
+    background-color: #00ff00;
+    color: #000;
+}
+#mensaje, #contadorIntentos {
+    font-size: 20px;
+    text-shadow: 0px 0px 5px rgba(0,255,0,0.5);
+}
+        /* Media Queries para pantallas pequeñas (menos de 600px) */
+        @media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    #game {
+        padding: 10px;
+    }
+    input[type="number"], button {
+        margin: 5px;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    #mensaje, #contadorIntentos {
+        font-size: 16px;
+    }
+}   

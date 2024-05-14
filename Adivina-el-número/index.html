@@ -1,161 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(53,53,53,1) 100%);
-            color: #00ff00;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #game {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0,255,0,0.5);
-        }
-        input[type="number"] {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            background-color: transparent;
-            color: #00ff00;
-            width: 50px;
-            text-align: center;
-            transition: all 0.5s ease;
-            -webkit-appearance: textfield; /* Esto elimina las flechas por defecto en Chrome y Safari */
-        }
-    Z
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none; /* Esto elimina las flechas por defecto en Chrome y Safari */
-    margin: 0; /* Esto elimina las flechas por defecto en Chrome y Safari */
-}
-
-input[type="number"]::-webkit-inner-spin-button {
-    background: url('up-arrow.png') no-repeat;
-    background-size: 9px;
-    opacity: 0.3;
-}
-
-input[type="number"]::-webkit-outer-spin-button {
-    background: url('down-arrow.png') no-repeat;
-    background-size: 9px;
-    opacity: 0.3;
-}
-        
-        input[type="number"]:focus {
-            outline: none;
-            box-shadow: 0px 0px 10px rgba(0,255,0,0.5);
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            background-color: transparent;
-            color: #00ff00;
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
-        button:hover {
-            background-color: #00ff00;
-            color: #000;
-        }
-        #mensaje, #contadorIntentos {
-            font-size: 20px;
-            text-shadow: 0px 0px 5px rgba(0,255,0,0.5);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="game">
           <!-- Instrucciones del juego -->
           <p id="instrucciones">Intenta adivinar el número secreto entre 1 y 100. <br><br> Tienes 10 intentos. ¡Buena suerte!</p>
         <!-- Campo de entrada para el número del jugador, con validación de entrada incorporada -->
-        <input type="number" id="numeroJugador" min="1" max="100" placeholder="##" onkeyup="if(event.keyCode == 13) adivinarNumero();">
+        <input type="number" id="numeroJugador" min="1" max="100" placeholder="##" aria-label="Número del jugador">
         <!-- Botón para adivinar el número, que llama a la función adivinarNumero cuando se hace clic en él -->
-        <button id="adivinar" onclick="adivinarNumero()">Adivinar</button>
+        <button id="adivinar" aria-label="Adivinar número">Adivinar</button>
         <!-- Botón para reiniciar el juego, que llama a la función reiniciarJuego cuando se hace clic en él -->
-        <button id="reiniciar" onclick="reiniciarJuego()">Reiniciar</button>
+        <button id="reiniciar" aria-label="Reiniciar juego">Reiniciar</button>
         <!-- Mensaje que se actualiza para dar retroalimentación al jugador -->
         <p id="mensaje"></p>
         <!-- Contador de intentos del jugador -->
         <p id="contadorIntentos">Intentos: 0</p>
     </div>
-    <script>
-        // Variables para el número secreto, el número de intentos y el contador de intentos
-        var numeroSecreto, intentos, contadorIntentos;
+    <script src="script.js"></script>
 
-        // Función para iniciar el juego
-        function iniciarJuego() {
-            // Genera un número secreto aleatorio entre 1 y 100
-            numeroSecreto = Math.floor(Math.random() * 100) + 1;
-            // Inicializa el número de intentos y el contador de intentos
-            intentos = 10;
-            contadorIntentos = 0;
-            // Limpia el mensaje y el contador de intentos en la interfaz de usuario
-            document.getElementById('mensaje').textContent = '';
-            document.getElementById('contadorIntentos').textContent = 'Intentos: 0';
-        }
-
-        // Función para adivinar el número
-        function adivinarNumero() {
-            // Obtiene el número del jugador del campo de entrada
-            var numeroJugador = document.getElementById('numeroJugador').value;
-
-            // Verifica que el número del jugador sea válido
-            if(numeroJugador == '' || numeroJugador < 1 || numeroJugador > 100) {
-                alert('Por favor, ingresa un número entre 1 y 100.');
-                return;
-            }
-
-            // Incrementa el contador de intentos y lo actualiza en la interfaz de usuario
-            contadorIntentos++;
-            document.getElementById('contadorIntentos').textContent = 'Intentos: ' + contadorIntentos;
-
-            // Comprueba si el número del jugador es igual al número secreto
-            if(numeroJugador == numeroSecreto) {
-                // Si el jugador adivina el número, muestra un mensaje de victoria
-                document.getElementById('mensaje').textContent = "¡Has adivinado el número en " + contadorIntentos + " intentos! El número secreto es " + numeroSecreto;
-            } else {
-                // Si el jugador no adivina el número, decrementa el número de intentos
-                intentos--;
-
-                // Da retroalimentación al jugador sobre si el número secreto es mayor o menor
-                if(numeroJugador < numeroSecreto) {
-                    document.getElementById('mensaje').textContent = "El número secreto es mayor. Te quedan " + intentos + " intentos.";
-                } else if(numeroJugador > numeroSecreto) {
-                    document.getElementById('mensaje').textContent = "El número secreto es menor. Te quedan " + intentos + " intentos.";
-                }
-            }
-
-            // Si el jugador se queda sin intentos, muestra un mensaje de derrota
-            if(intentos == 0) {
-                document.getElementById('mensaje').textContent = "Has perdido. El número secreto era " + numeroSecreto;
-            }
-        }
-
-        // Función para reiniciar el juego
-        function reiniciarJuego() {
-            iniciarJuego();
-        }
-
-        // Inicia el juego cuando se carga la página
-        iniciarJuego();
-
-        document.getElementById('numeroJugador').focus();
-
-    </script>
 </body>
 </html>
