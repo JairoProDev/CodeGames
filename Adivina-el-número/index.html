@@ -8,11 +8,15 @@
         // El jugador tiene 10 intentos para adivinar el número
         var intentos = 10;
 
+        // contador de intentos
+        var contadorIntentos = 0;
+
         while(intentos > 0) {
             var numeroJugador = prompt("Adivina el número entre 1 y 100");
 
+            contadorIntentos++;
             if(numeroJugador == numeroSecreto) {
-                alert("¡Has adivinado el número!");
+                alert("¡Has adivinado el número en " + contadorIntentos + " intentos!");
                 break;
             } else if(numeroJugador < numeroSecreto) {
                 alert("El número secreto es mayor. Te quedan " + --intentos + " intentos.");
