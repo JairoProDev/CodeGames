@@ -80,6 +80,8 @@ input[type="number"]::-webkit-outer-spin-button {
 </head>
 <body>
     <div id="game">
+          <!-- Instrucciones del juego -->
+          <p id="instrucciones">Intenta adivinar el número secreto entre 1 y 100. <br><br> Tienes 10 intentos. ¡Buena suerte!</p>
         <!-- Campo de entrada para el número del jugador, con validación de entrada incorporada -->
         <input type="number" id="numeroJugador" min="1" max="100" placeholder="##" onkeyup="if(event.keyCode == 13) adivinarNumero();">
         <!-- Botón para adivinar el número, que llama a la función adivinarNumero cuando se hace clic en él -->
