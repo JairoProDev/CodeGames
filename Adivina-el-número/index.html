@@ -8,25 +8,36 @@
         // El jugador tiene 10 intentos para adivinar el número
         var intentos = 10;
 
-        // contador de intentos
+        // Contador de intentos
         var contadorIntentos = 0;
 
+        // Este bucle se ejecuta mientras el jugador tenga intentos restantes
         while(intentos > 0) {
+            // Solicita al jugador que adivine el número
             var numeroJugador = prompt("Adivina el número entre 1 y 100");
 
+            // Incrementa el contador de intentos
             contadorIntentos++;
+
+            // Si el jugador adivina el número, muestra un mensaje de victoria y termina el bucle
             if(numeroJugador == numeroSecreto) {
-                alert("¡Has adivinado el número en " + contadorIntentos + " intentos!");
+                alert("¡Has adivinado el número en " + contadorIntentos + " intentos! El número secreto es " + numeroSecreto);
                 break;
-            } else if(numeroJugador < numeroSecreto) {
+            } 
+            // Si el número del jugador es menor que el número secreto, informa al jugador y decrementa el número de intentos
+            else if(numeroJugador < numeroSecreto) {
                 alert("El número secreto es mayor. Te quedan " + --intentos + " intentos.");
-            } else if(numeroJugador > numeroSecreto) {
+            } 
+            // Si el número del jugador es mayor que el número secreto, informa al jugador y decrementa el número de intentos
+            else if(numeroJugador > numeroSecreto) {
                 alert("El número secreto es menor. Te quedan " + --intentos + " intentos.");
             }
         }
 
+        // Si el jugador se queda sin intentos, muestra un mensaje de derrota
         if(intentos == 0) {
             alert("Has perdido. El número secreto era " + numeroSecreto);
-        }    </script>
+        }    
+    </script>
 </body>
 </html>
