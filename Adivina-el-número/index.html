@@ -1,43 +1,68 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #game {
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
+    <div id="game">
+        <input type="number" id="numeroJugador" min="1" max="100">
+        <button onclick="adivinarNumero()">Adivinar</button>
+        <button onclick="reiniciarJuego()">Reiniciar</button>
+        <p id="mensaje"></p>
+        <p id="contadorIntentos">Intentos: 0</p>
+    </div>
     <script>
-        // Genera un número aleatorio entre 1 y 100
-        var numeroSecreto = Math.floor(Math.random() * 100) + 1;
+        var numeroSecreto, intentos, contadorIntentos;
 
-        // El jugador tiene 10 intentos para adivinar el número
-        var intentos = 10;
+        function iniciarJuego() {
+            numeroSecreto = Math.floor(Math.random() * 100) + 1;
+            intentos = 10;
+            contadorIntentos = 0;
+            document.getElementById('mensaje').textContent = '';
+            document.getElementById('contadorIntentos').textContent = 'Intentos: 0';
+        }
 
-        // Contador de intentos
-        var contadorIntentos = 0;
+        function adivinarNumero() {
+            var numeroJugador = document.getElementById('numeroJugador').value;
 
-        // Este bucle se ejecuta mientras el jugador tenga intentos restantes
-        while(intentos > 0) {
-            // Solicita al jugador que adivine el número
-            var numeroJugador = prompt("Adivina el número entre 1 y 100");
+            if(numeroJugador == '' || numeroJugador < 1 || numeroJugador > 100) {
+                alert('Por favor, ingresa un número entre 1 y 100.');
+                return;
+            }
 
-            // Incrementa el contador de intentos
             contadorIntentos++;
+            document.getElementById('contadorIntentos').textContent = 'Intentos: ' + contadorIntentos;
 
-            // Si el jugador adivina el número, muestra un mensaje de victoria y termina el bucle
             if(numeroJugador == numeroSecreto) {
-                alert("¡Has adivinado el número en " + contadorIntentos + " intentos! El número secreto es " + numeroSecreto);
-                break;
-            } 
-            // Si el número del jugador es menor que el número secreto, informa al jugador y decrementa el número de intentos
-            else if(numeroJugador < numeroSecreto) {
-                alert("El número secreto es mayor. Te quedan " + --intentos + " intentos.");
-            } 
-            // Si el número del jugador es mayor que el número secreto, informa al jugador y decrementa el número de intentos
-            else if(numeroJugador > numeroSecreto) {
-                alert("El número secreto es menor. Te quedan " + --intentos + " intentos.");
+                document.getElementById('mensaje').textContent = "¡Has adivinado el número en " + contadorIntentos + " intentos! El número secreto es " + numeroSecreto;
+            } else {
+                intentos--;
+
+                if(numeroJugador < numeroSecreto) {
+                    document.getElementById('mensaje').textContent = "El número secreto es mayor. Te quedan " + intentos + " intentos.";
+                } else if(numeroJugador > numeroSecreto) {
+                    document.getElementById('mensaje').textContent = "El número secreto es menor. Te quedan " + intentos + " intentos.";
+                }
+            }
+
+            if(intentos == 0) {
+                document.getElementById('mensaje').textContent = "Has perdido. El número secreto era " + numeroSecreto;
             }
         }
 
-        // Si el jugador se queda sin intentos, muestra un mensaje de derrota
-        if(intentos == 0) {
-            alert("Has perdido. El número secreto era " + numeroSecreto);
-        }    
+        function reiniciarJuego() {
+            iniciarJuego();
+        }
+
+        iniciarJuego();
     </script>
 </body>
 </html>
