@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Juego de Laberinto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Laberinto</h1>
+    <div id="maze-container">
+      <div id="player"></div>
+      <div id="goal"></div>
+      <div class="wall" style="grid-column: 2; grid-row: 1;"></div>
+      <div class="wall" style="grid-column: 2; grid-row: 2;"></div>
+      <div class="wall" style="grid-column: 3; grid-row: 2;"></div>
+      <div class="wall" style="grid-column: 4; grid-row: 3;"></div>
+      <div class="wall" style="grid-column: 4; grid-row: 4;"></div>
+      <div class="wall" style="grid-column: 1; grid-row: 4;"></div>
+      <div class="wall" style="grid-column: 1; grid-row: 5;"></div>
+    </div>
+    <p id="message"></p>
+    <button id="reset-button" class="hidden">Jugar de nuevo</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

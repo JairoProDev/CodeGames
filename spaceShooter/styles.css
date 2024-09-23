@@ -1,0 +1,101 @@
+/* Space Shooter - Modern Space Theme */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .game-container {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  h1 {
+    font-size: 2em;
+    color: #00ff99;
+  }
+  
+  #game-area {
+    background-color: #222;
+    width: 100%;
+    height: 500px;
+    border: 2px solid #00ff99;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #spaceship {
+    width: 40px;
+    height: 40px;
+    background-color: #00ff99;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    transition: left 0.1s;
+  }
+  
+  .laser {
+    width: 5px;
+    height: 15px;
+    background-color: #ff0066;
+    position: absolute;
+    top: -15px;
+  }
+  
+  .asteroid {
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 50%;
+    position: absolute;
+    top: -40px;
+  }
+  
+  button {
+    background-color: #00ff99;
+    color: #181818;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+  }
+  
+  button.hidden {
+    display: none;
+  }
+  
+  @media (max-width: 600px) {
+    #game-area {
+      height: 400px;
+    }
+  
+    #spaceship {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .asteroid {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
